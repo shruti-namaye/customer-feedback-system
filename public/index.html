@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Satisfaction Survey</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+      }
+      .container {
+        background: white;
+        border-radius: 8px;
+        padding: 30px 40px;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #555;
+      }
+      .section {
+        margin-top: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .options input {
+        margin-right: 5px;
+      }
+      textarea,
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .rating-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      .rating-table th,
+      .rating-table td {
+        text-align: center;
+        padding: 8px;
+      }
+      .rating-table th {
+        background-color: #f0f0f0;
+      }
+      button {
+        background-color: #004080;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #003366;
+      }
+      .thank-you {
+        text-align: center;
+        margin-top: 30px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Customer Satisfaction Survey</h1>
+      <p>
+        Please help us improve by completing this short survey. Your feedback
+        matters!
+      </p>
+
+      <form id="feedbackForm" action="/api/feedback" method="POST">
+        <!-- Age Group -->
+        <div class="section">
+          <label>What is your age?</label>
+          <div class="options">
+            <label
+              ><input type="radio" name="age" value="Under 18" required /> Under
+              18</label
+            >
+            <label><input type="radio" name="age" value="18-24" /> 18-24</label>
+            <label><input type="radio" name="age" value="24-30" /> 24-30</label>
+            <label
+              ><input type="radio" name="age" value="Others" /> Others</label
+            >
+          </div>
+        </div>
+
+        <!-- Service Discovery -->
+        <div class="section">
+          <label>How did you find out about our services?</label>
+          <div class="options">
+            <label
+              ><input type="radio" name="source" value="Website" required />
+              Website</label
+            >
+            <label
+              ><input type="radio" name="source" value="Social Media" /> Social
+              Media</label
+            >
+            <label
+              ><input type="radio" name="source" value="Friends" />
+              Friends</label
+            >
+            <label
+              ><input type="radio" name="source" value="Others" /> Others</label
+            >
+          </div>
+        </div>
+
+        <!-- Overall Satisfaction -->
+        <div class="section">
+          <label>Are you satisfied with our services?</label>
+          <div class="options">
+            <label
+              ><input
+                type="radio"
+                name="overall_satisfaction"
+                value="Very Unsatisfied"
+                required
+              />
+              Very Unsatisfied</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="overall_satisfaction"
+                value="Unsatisfied"
+              />
+              Unsatisfied</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="overall_satisfaction"
+                value="Neutral"
+              />
+              Neutral</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="overall_satisfaction"
+                value="Satisfied"
+              />
+              Satisfied</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="overall_satisfaction"
+                value="Very Satisfied"
+              />
+              Very Satisfied</label
+            >
+          </div>
+        </div>
+
+        <!-- Detailed Rating -->
+        <div class="section">
+          <label>Please rate your satisfaction with:</label>
+          <table class="rating-table" border="1">
+            <tr>
+              <th>Category</th>
+              <th>Very Unsatisfied</th>
+              <th>Unsatisfied</th>
+              <th>Neutral</th>
+              <th>Satisfied</th>
+              <th>Very Satisfied</th>
+            </tr>
+            <tr>
+              <td>Purchase Process</td>
+              <td>
+                <input
+                  type="radio"
+                  name="purchase_process"
+                  value="1"
+                  required
+                />
+              </td>
+              <td><input type="radio" name="purchase_process" value="2" /></td>
+              <td><input type="radio" name="purchase_process" value="3" /></td>
+              <td><input type="radio" name="purchase_process" value="4" /></td>
+              <td><input type="radio" name="purchase_process" value="5" /></td>
+            </tr>
+            <tr>
+              <td>Customer Service</td>
+              <td>
+                <input
+                  type="radio"
+                  name="customer_service"
+                  value="1"
+                  required
+                />
+              </td>
+              <td><input type="radio" name="customer_service" value="2" /></td>
+              <td><input type="radio" name="customer_service" value="3" /></td>
+              <td><input type="radio" name="customer_service" value="4" /></td>
+              <td><input type="radio" name="customer_service" value="5" /></td>
+            </tr>
+            <tr>
+              <td>Product Quality</td>
+              <td>
+                <input type="radio" name="product_quality" value="1" required />
+              </td>
+              <td><input type="radio" name="product_quality" value="2" /></td>
+              <td><input type="radio" name="product_quality" value="3" /></td>
+              <td><input type="radio" name="product_quality" value="4" /></td>
+              <td><input type="radio" name="product_quality" value="5" /></td>
+            </tr>
+            <tr>
+              <td>Product Value</td>
+              <td>
+                <input type="radio" name="product_value" value="1" required />
+              </td>
+              <td><input type="radio" name="product_value" value="2" /></td>
+              <td><input type="radio" name="product_value" value="3" /></td>
+              <td><input type="radio" name="product_value" value="4" /></td>
+              <td><input type="radio" name="product_value" value="5" /></td>
+            </tr>
+            <tr>
+              <td>Ease of Use</td>
+              <td>
+                <input type="radio" name="ease_of_use" value="1" required />
+              </td>
+              <td><input type="radio" name="ease_of_use" value="2" /></td>
+              <td><input type="radio" name="ease_of_use" value="3" /></td>
+              <td><input type="radio" name="ease_of_use" value="4" /></td>
+              <td><input type="radio" name="ease_of_use" value="5" /></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Title, Email & Message -->
+        <div class="section">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Feedback title"
+            required
+          />
+
+          <label for="email">Your Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+          />
+
+          <label for="message">Additional comments or suggestions</label>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Write your comments here..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+        <div
+          id="statusMessage"
+          style="margin-top: 20px; font-weight: bold"
+        ></div>
+      </form>
+
+      <p class="thank-you">Thank you for your time!</p>
+    </div>
+    <script>
+      // Protect the form by checking login
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) {
+        alert("Please login to access the feedback form.");
+        window.location.href = "login.html";
+      } else {
+        // Auto-fill the email field with logged-in user's email
+        document.querySelector("input[name='email']").value = user.email;
+      }
+    </script>
+    <script>
+      const form = document.getElementById("feedbackForm");
+      const statusMessage = document.getElementById("statusMessage");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch("/api/feedback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const result = await res.json();
+
+          if (res.ok) {
+            statusMessage.textContent = "✅ Feedback submitted successfully!";
+            statusMessage.style.color = "green";
+            form.reset();
+
+            // Re-fill email after reset
+            if (user && user.email) {
+              document.querySelector("input[name='email']").value = user.email;
+            }
+          } else {
+            statusMessage.textContent = `❌ ${result.message}`;
+            statusMessage.style.color = "red";
+          }
+        } catch (error) {
+          console.error("Submission error:", error);
+          statusMessage.textContent =
+            "❌ Server error. Please try again later.";
+          statusMessage.style.color = "red";
+        }
+      });
+    </script>
+  </body>
+</html>
